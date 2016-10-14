@@ -251,10 +251,9 @@ def execute_take(item_id):
     item_present = False
     for key in current_room["items"]:
         if key["id"] == item_id:
-            add_item = key
-            inventory.append(add_item)
-            current_room["items"].remove(add_item)
-            print("You have taken " + add_item)
+            inventory.append(key)
+            current_room["items"].remove(key)
+            print("You have taken ",key["id"])
             item_present = True
     if item_present == False:
         print("That item is not here")
@@ -268,10 +267,9 @@ def execute_drop(item_id):
     item_in_inventory = False
     for key in inventory:
         if key["id"] == item_id:
-            drop_item = key
-            inventory.remove(add_item)
-            current_room["items"].append(add_item)
-            print("You have dropped " + drop_item)
+            inventory.remove(key)
+            current_room["items"].append(key)
+            print("You have dropped ", key["id"])
             item_in_inventory = True
     if item_in_inventory == False:
         print("You don't have that item")
