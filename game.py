@@ -236,12 +236,13 @@ def execute_go(direction):
     (and prints the name of the room into which the player is
     moving). Otherwise, it prints "You cannot go there."
     """
+    new_room = ""
     if direction in current_room["exits"]:
-        current_room = move(current_room["exits"],direction)
+        new_room =  move(current_room["exits"],direction)
     else:
         print("There is no exit that way!")
-
-
+    return new_room
+    
 def execute_take(item_id):
     """This function takes an item_id as an argument and moves this item from the
     list of items in the current room to the player's inventory. However, if
@@ -253,7 +254,7 @@ def execute_take(item_id):
         if key["id"] == item_id:
             inventory.append(key)
             current_room["items"].remove(key)
-            print("You have taken ",key["id"])
+            print("You have taken",key["id"])
             item_present = True
     if item_present == False:
         print("That item is not here")
@@ -269,7 +270,7 @@ def execute_drop(item_id):
         if key["id"] == item_id:
             inventory.remove(key)
             current_room["items"].append(key)
-            print("You have dropped ", key["id"])
+            print("You have dropped", key["id"])
             item_in_inventory = True
     if item_in_inventory == False:
         print("You don't have that item")
